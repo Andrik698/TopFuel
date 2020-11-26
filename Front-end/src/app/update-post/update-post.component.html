@@ -1,0 +1,28 @@
+<app-dashboard></app-dashboard>
+<div class="wrapper">
+  <div class="alert alert-success" role="alert" id="success" hidden="true">
+    A simple success alert—check it out!
+  </div>
+  <div class="alert alert-danger" role="alert" id=fool hidden="true">
+    A simple danger alert—check it out!
+  </div>
+  <div class="container" *ngIf="userPost$">
+    <form class="form-signin" (submit)="updatePost()">
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <label>Категория</label>
+          <select class="custom-select d-block w-100" [(ngModel)]="selectedCategory" name="selectedCategory" id="selectedCategory"
+            required="" >
+            <option *ngFor="let cat of categories">{{ cat.category }}</option>
+            <!-- <option *ngFor="let cars of allCars">{{cars.brand}}</option> -->
+          </select>
+        </div>
+        <p class="m-auto">Дата создания поста: {{ createDate | date: "short" }}</p>
+      </div>
+      <input [(ngModel)]="title" name="title" type="text" id="title" class="form-control mb-3" placeholder="Заголовок" required="">
+      <input [(ngModel)]="selectedSubTitle" name="selectedSubTitle" type="text" id="selectedSubTitle" class="form-control mb-3" placeholder="Подзаголовок" required="">
+      <quill-editor [(ngModel)]="post" name="postBody" id="postBody" placeholder="Пост"></quill-editor>
+      <button class="btn btn-lg btn-primary btn-block mt-5" type="submit">Обновить</button>
+    </form>
+  </div>
+</div>

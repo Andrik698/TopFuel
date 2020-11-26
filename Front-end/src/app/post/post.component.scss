@@ -1,0 +1,82 @@
+.wrapper {
+  height: 94vh;
+  padding-bottom: 90px;
+  margin-left: 200px;
+  padding-top: 56px;
+}
+
+.alert {
+  top: 50px;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+}
+
+.head{
+  display:inline-block;
+    position:relative;
+    background-color: black;
+    width: 100%;
+}
+
+.head img{
+  opacity: 0.65;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+}
+
+.head-title{
+  position: absolute;
+	top: 77px;
+	left: 30px;
+  width: 100%;
+  color: whitesmoke;
+  text-shadow: 0 0 40px black;
+}
+
+.img-post{
+  object-fit: cover;
+  width: 100%;
+  height: 450px;
+}
+
+.img-car {
+  position: inherit;
+  width: 100%;
+  height: 400px !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.ql-img {
+  overflow: hidden;
+  display: flex;
+  margin-top: -5rem;
+  justify-content: center;
+}
+
+.logout{
+  color: tomato !important;
+  cursor: pointer;
+}
+
+textarea {
+  resize: none;
+}
+
+.nav-link {
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  .wrapper {
+    margin-left: 0px;
+  }
+}
+
+
+
+

@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  height: 90vh;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 90px;
+  padding-top: 56px;
+}
+
+.auth {
+  max-width: 700px;
+}
+
+h2 {
+  margin-top: 20px;
+  margin-bottom: 20px !important
+}
+
+input {
+  margin-top: 10px;
+}
+
+.form-control {
+  display: inline-block;
+}
+
+label {
+  margin-top: 10px;
+}

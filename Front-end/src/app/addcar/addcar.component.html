@@ -1,0 +1,97 @@
+<app-dashboard></app-dashboard>
+<div class="wrapper">
+  <div class="auth">
+    <div class="container">
+      <form class="form-signin" [formGroup]="form" (ngSubmit)="addCarUser()">
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label>Марка</label>
+            <select class="custom-select d-block w-100" formControlName="brand" required="" (change)="getModel()">
+              <option value="">Выберите...</option>
+              <option *ngFor="let brand of changeBrand">{{brand}}</option>
+              <!-- <option *ngFor="let cars of allCars">{{cars.brand}}</option> -->
+            </select>
+            <div class="invalid-feedback">
+              Please select a valid country.
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label>Модель</label>
+            <select class="custom-select d-block w-100" formControlName="model" required=""
+              (change)="getGeneration()">
+              <option value="">Выберите...</option>
+              <option *ngFor="let model of changeModel">{{model}}</option>
+            </select>
+            <div class="invalid-feedback">
+              Please select a valid country.
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label>Поколение</label>
+            <select class="custom-select d-block w-100" formControlName="generation" (change)="generationChanged()">
+              <option value="">Выберите...</option>
+              <option *ngFor="let gener of changeGeneration" [ngValue]="gener.generation">{{gener.generation}}</option>
+            </select>
+            <div class="invalid-feedback">
+              Please select a valid country.
+            </div>
+          </div>
+        </div>
+        <div>
+          <img class="img-car" src="{{img}}" alt="">
+        </div>
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label>Кузов</label>
+            <select class="custom-select d-block w-100" formControlName="bodyCarSend">
+              <option value="">Выберите...</option>
+              <option *ngFor="let gener of bodyCar">{{gener}}</option>
+            </select>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label>Объем двигателя</label>
+            <select class="custom-select d-block w-100" formControlName="engineVolumeSend">
+              <option value="">Выберите...</option>
+              <option *ngFor="let gener of engineVolume">{{gener}}</option>
+            </select>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label>Тип двигателя</label>
+            <select class="custom-select d-block w-100" formControlName="engineTypeSend">
+              <option value="">Выберите...</option>
+              <option *ngFor="let gener of engineType">{{gener}}</option>
+            </select>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label>КПП</label>
+            <select class="custom-select d-block w-100" formControlName="gearboxSend">
+              <option value="">Выберите...</option>
+              <option *ngFor="let gener of gearbox">{{gener}}</option>
+            </select>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label>URL</label>
+            <input formControlName="urlSend" type="text" class="form-control" placeholder="http://..." required="" >
+          </div>
+          <div class="col-md-4 mb-3">
+            <label>Имя машины</label>
+            <input formControlName="carNameSend" type="text" class="form-control" placeholder="" required="" >
+          </div>
+          <div class="col-md-12 mb-3">
+            <label>Описание</label>
+            <textarea class="custom-select" formControlName="textSend" rows="3">
+              {{ textSend }}
+            </textarea>
+            <div *ngIf="form.get('textSend').invalid && form.get('textSend').touched">
+              <small *ngIf="form.get('textSend').errors.minlength" class="error">Не должно быть менее 50 символов</small>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="form.invalid">Добавить</button>
+      </form>
+    </div>
+  </div>
+  <div class="alert alert-danger" role="alert" id=fool hidden="true">
+    A simple danger alert—check it out!
+  </div>
+</div>

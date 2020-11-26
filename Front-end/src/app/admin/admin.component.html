@@ -1,0 +1,119 @@
+<app-dashboard></app-dashboard>
+<div class="wrapper">
+  <div class="container">
+    <button type="button" class="btn btn-secondary" (click)="getAllUsers()"> Получить всех пользователей  </button>
+     Поиск: <input type="text" (input)="getOneUser($event)">
+    <div>
+      <table>
+        <thead *ngIf="users$">
+          <tr>
+            <th>UserName</th>
+            <th>Name</th>
+            <th>Lastname</th>
+            <th>City</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users$">
+            <th>{{ user.userName }}</th>
+            <th>{{ user.name }}</th>
+            <th>{{ user.lastName }}</th>
+            <th>{{ user.city }}</th>
+            <th>
+              <button type="button" class="btn btn-danger" (click)="deleteUser(user._id)">Del</button>
+              <button type="button" class="btn btn-warning" *ngIf="!user.ban" (click)="banUser(user._id, true)">ban</button>
+              <button type="button" class="btn btn-info" *ngIf="user.ban" (click)="banUser(user._id, false)">unban</button>
+              <button type="button" class="btn btn-warning" *ngIf="!user.mute" (click)="muteUser(user._id, true)">mute</button>
+              <button type="button" class="btn btn-info" *ngIf="user.mute" (click)="muteUser(user._id, false)">unmute</button>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+      <p ></p>
+    </div>
+    <br>
+
+    <button type="button" class="btn btn-secondary" (click)="getAllPosts()"> Получить все посты  </button>
+    Поиск: <input type="text" placeholder="" required="" (input)="getOnePost($event)" >
+    <div>
+      <table>
+        <thead *ngIf="posts$">
+        <tr>
+          <th>№</th>
+          <th>name</th>
+          <th>title</th>
+          <th>category</th>
+          <th>car</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let post of posts$; let idx = index">
+          <th>{{ idx+1 }}</th>
+          <th>{{ post.author.name }}</th>
+          <th>{{ post.title }}</th>
+          <th>{{ post.category }}</th>
+          <th>{{ post.car }}</th>
+          <th>
+            <button type="button" class="btn btn-danger" (click)="deletePost(post._id, post.carId)">Del</button>
+            <button type="button" class="btn btn-warning" *ngIf="!post.hide" (click)="hidePost(post._id, true)">hide</button>
+            <button type="button" class="btn btn-info" *ngIf="post.hide" (click)="hidePost(post._id, false)">unhide</button>
+          </th>
+        </tr>
+        </tbody>
+      </table>
+      <p ></p>
+    </div>
+    <br>
+
+    <button type="button" class="btn btn-secondary" (click)="getAllUsersCars()"> Получить все машины пользователей  </button>
+    Поиск: <input type="text" placeholder="" required="" (input)="getOneUserCars($event)">
+    <div>
+      <table>
+        <thead *ngIf="cars$">
+        <tr>
+          <th>№</th>
+          <th>name</th>
+          <th>model</th>
+          <th>user</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let car of cars$; let idx = index">
+          <th>{{ idx+1 }}</th>
+          <th>{{ car.carName }}</th>
+          <th>{{ car.brand }} {{ car.model}} {{ car.generation }}</th>
+          <th>{{ car.user.name }}</th>
+          <th>
+            <button type="button" class="btn btn-danger" (click)="deleteCar(car._id, car.user.userId, car.carName)">Del</button>
+          </th>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+
+
+    <input [(ngModel)]="city" type="text" id="city" name="city" class="form-control" placeholder="city" required="">
+    <button type="button" class="btn btn-secondary"  (click)="addCity()"> доб город  </button>
+    <br>
+    <br>
+
+    <input [(ngModel)]="category" type="text" id="category" name="category" class="form-control" placeholder="category" required="">
+    <button type="button" class="btn btn-secondary"  (click)="addCategory()"> доб категорию  </button>
+    <br>
+    <br>
+
+    <form [formGroup]="form" (ngSubmit)="addCar()">
+      <input type="text" class="form-control" placeholder="бренд" required="" formControlName="brand">
+      <input type="text" class="form-control" placeholder="модель" required="" formControlName="model">
+      <input type="text" class="form-control" placeholder="поколение" required="" formControlName="generation">
+      <input type="text" class="form-control" placeholder="картинка" required="" formControlName="img">
+      <button type="submit" class="btn btn-secondary"> доб машину  </button>
+    </form>
+
+  </div>
+</div>
+

@@ -1,0 +1,145 @@
+<app-dashboard></app-dashboard>
+<div class="wrapper">
+  <div class="container">
+      <form class="form-signin media-heading " [formGroup]="form" (ngSubmit)="updateUser()">
+        <div class="profile">
+          <div class="media-left mr-3 mt-3">
+            <svg class="bd-placeholder-img rounded-circle mb-3" width="300" height="300"
+                 xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
+                 aria-label="Placeholder: 140x140"><title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#777"></rect>
+              <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+            </svg>
+            <!-- <div class="photo-redact">
+               <input type="file" class="btn btn-outline-primary">
+             </div>
+            !--<div class="photo-redact mt-3">
+               <button type="button" class="btn btn-outline-success">Success</button>
+               <button type="button" class="btn btn-outline-danger">Danger</button>
+             </div>-->
+            <div class="col-md-12 mb-6">
+              <label>Выбрать основную машину</label>
+              <select class="custom-select d-block w-100" name="brand" id="brand" required="" formControlName="userCar">
+                <option value="{{ carOfUser }}" hidden="true">{{ carOfUser }}</option>
+                <option value="">Выберите...</option>
+                <option value="Пешком">Пешком</option>
+                <option value="Общественный транспорт">Общественный транспорт</option>
+                <option *ngFor="let car of userCars$">{{car.brand}} {{car.model}} {{car.generation}}</option>
+              </select>
+              <div class="invalid-feedback">
+                Please select a valid country.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form">
+          <h2 class="h3 mb-3 font-weight-normal">Ваш профиль</h2>
+          <div class="block">
+            <input type="text" class="form-control" placeholder="" required="" formControlName="name">
+            <div *ngIf="form.get('name').invalid && form.get('name').touched">
+              <small *ngIf="form.get('name').errors.required">Обязательное поле</small>
+              <small *ngIf="form.get('name').errors.minlength">Имя не должно быть менее 2-х символов</small>
+            </div>
+          </div>
+
+          <div>
+            <input type="text" class="form-control" placeholder="" required="" formControlName="lastname">
+            <div *ngIf="form.get('lastname').invalid && form.get('lastname').touched">
+              <small *ngIf="form.get('lastname').errors.required">Обязательное поле</small>
+              <small *ngIf="form.get('lastname').errors.minlength">Фамилия не должна быть менее 2-х символов</small>
+            </div>
+          </div>
+
+          <div>
+            <input type="text" class="form-control" placeholder="" required="" formControlName="userName">
+            <div *ngIf="form.get('userName').invalid && form.get('userName').touched">
+              <small *ngIf="form.get('userName').errors.required">Обязательное поле</small>
+              <small *ngIf="form.get('userName').errors.minlength">Ник не должен быть менее 6 символов</small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-8 mb-3 mt-2">
+              <select class="custom-select d-block w-100" required="" formControlName="city">
+                <option value="{{user.city}}" hidden="true">{{user.city}}</option>
+                <option value="">Выберите...</option>
+                <option *ngFor="let city of cities">{{city.city}}</option>
+              </select>
+            </div>
+          </div>
+
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                    formControlName="aboutUser">{{ aboutUser }}</textarea>
+
+          <button class="btn btn-lg btn-primary btn-block mt-5" type="submit" [disabled]="form.invalid">Обновить
+          </button>
+
+        </div>
+
+        <div class="alert alert-success" role="alert" id="success" hidden="true">
+          A simple success alert—check it out!
+        </div>
+        <div class="alert alert-danger" role="alert" id=fool hidden="true">
+          A simple danger alert—check it out!
+        </div>
+      </form>
+    </div>
+
+
+
+  <!--<div class="container">
+    <hr>
+    <div class="row">
+
+      <div class="col-md-4 mb-3">
+        <label>Модель</label>
+        <select class="custom-select d-block w-100" name="model" id="model" required="">
+          <option value="">Выберите...</option>
+
+        </select>
+        <div class="invalid-feedback">
+          Please select a valid country.
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>Поколение</label>
+        <select class="custom-select d-block w-100" name="generation" id="generation">
+          <option value="">Выберите...</option>
+
+        </select>
+        <div class="invalid-feedback">
+          Please select a valid country.
+        </div>
+      </div>
+    </div>
+    <div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label>Кузов</label>
+        <select class="custom-select d-block w-100" name="bodyCarSend" id="bodyCarSend">
+
+        </select>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>Объем двигателя</label>
+        <select class="custom-select d-block w-100" name="engineVolumeSend" id="engineVolumeSend">
+
+        </select>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>Тип двигателя</label>
+        <select class="custom-select d-block w-100" name="engineTypeSend" id="engineTypeSend">
+
+        </select>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>КПП</label>
+        <select class="custom-select d-block w-100" name="gearboxSend" id="gearboxSend">
+
+        </select>
+      </div>
+    </div>
+  </div>-->
+</div>

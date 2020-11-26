@@ -1,0 +1,48 @@
+<app-dashboard></app-dashboard>
+<div class="wrapper" *ngIf="loaded; else loading">
+  <div class="head">
+    <img src="{{ thisCar.img }}" class="img-car" alt="">
+    <div class="col-md-6 px-0 head-title">
+      <h1 class="display-4 font-italic">{{ thisCar.brand }} {{ thisCar.generation }}</h1>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2 class="mt-5">Отзыв</h2>
+    <p class="lead my-3">{{ thisCar.text }}</p>
+    <h2 class="mt-5">О машине</h2>
+    <p><span>-</span> {{ thisCar.brand }} {{ thisCar.model }} {{ thisCar.generation }}</p>
+    <p><span>-</span> Кузов {{ thisCar.bodyCar }}</p>
+    <p><span>-</span> Двигатель: {{ thisCar.engineVolume }} {{ thisCar.engineType }} </p>
+    <p><span>-</span> Коробка: {{ thisCar.gearbox }}</p>
+    <p></p>
+    <h2 class="mt-5">Ваши посты</h2>
+    <div class="card-columns" >
+      <div *ngIf="posts.length !== 0">
+        <div class="card" *ngFor="let post of posts">
+          <img src="{{ post.img | imgSlice}}" class="card-img-top" alt="{{ post.title }}">
+          <div class="card-body">
+            <small class="text-muted">{{ post.date | date:'short'}}</small>
+            <h5 class="card-title mb-1">{{ post.title}}</h5>
+            <h6 class="card-title">{{ post.category }}</h6>
+            <p class="card-text">{{ post.subTitle }}</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">likes: {{ post.likes }} comm: {{ post.commentsCount }}</small>
+            <button class="btn btn-primary" [routerLink]="['/post', post._id]">Подробнее</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #loading>
+  <div class="wrapper-spinner posts">
+    <h3 class="mr-2">Загрузка...</h3>
+    <div class="spinner-border text-secondary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,34 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 90px;
+  margin-left: 200px;
+  padding-top: 56px;
+}
+
+.wrapper-spinner {
+  margin-left: 200px;
+  padding-top: 56px;
+  height: 94vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-footer {
+  padding: 5px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 800px) {
+  .wrapper {
+    margin-left: 0px;
+  }
+  .wrapper-spinner {
+    margin-left: 0px;
+  }
+}

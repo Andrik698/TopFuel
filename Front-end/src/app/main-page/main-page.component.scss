@@ -1,0 +1,259 @@
+.wrapper {
+  height: 100vh;
+  padding-top: 49px;
+  display: flex;
+  text-align: center;
+  color: aliceblue;
+  background: url("https://w-dog.ru/wallpapers/1/4/558553239902811/lamborghini-mini-volkswagen-fiat-nissan-ford-volvo-opel-sidenya-mercedes-benz-gonochnyj-trek-fon.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+}
+.cover-container {
+  max-width: 42em;
+  align-items: center;
+}
+.header-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: rgba(0,0,0, .5);
+}
+
+.lead span{
+  font-weight: bold;
+}
+
+.red {
+  color: crimson;
+}
+
+.white {
+  color: white;
+}
+
+.name{
+  font-size: 100px;
+  span {
+    color: crimson;
+  }
+}
+
+.model img{
+  height: 100px;
+  width: 100px;
+  margin: 1.5rem 2rem 0 2rem;
+  transition-duration: 0.2s;
+}
+
+.model img:hover{
+  transform: scale(1.2);
+  transition-duration: 0.2s;
+}
+
+.row-models {
+  justify-content: space-around;
+}
+
+.row-categories {
+  justify-content: space-around;
+}
+
+.category {
+  width: 300px;
+  min-width: 250px;
+  height: 150px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  position: relative;
+  background-color: black;
+  cursor: pointer;
+}
+
+.category-title {
+  position: absolute;
+  top: 15%;
+  left: 15px;
+  font-size: 25px;
+  color: whitesmoke;
+  font-weight: lighter;
+  cursor: pointer;
+}
+
+.categories-img {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  object-fit: cover;
+  opacity: 0.4;
+  transition-duration: 0.2s;
+}
+
+.categories-img:hover{
+  opacity: 0.9;
+}
+
+.grid-wrapper{
+  display: flex;
+}
+
+.grid-wrapper-horizontal {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.grid-horizontal {
+  height: 100px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  padding: 0.1rem;
+}
+
+.grid-in-horizontal {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 50%;
+  height: 450px;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 50%;
+  height: 600px;
+}
+.grid-block {
+  height: 100px;
+  width: 50%;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  padding: 0.1rem;
+}
+
+.grid-content {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  background: black;
+  cursor: pointer;
+}
+
+.grid-img {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  object-fit: cover;
+  opacity: 0.4;
+  transition-duration: 0.2s;
+}
+
+.grid-img:hover{
+   opacity: 0.9;
+ }
+
+.topPost-title{
+  position: absolute;
+  top: 5px;
+  left: 15px;
+  font-size: 22px;
+  color: whitesmoke;
+  font-weight: lighter;
+  cursor: pointer;
+  line-height: 24px;
+}
+
+.topPost-title small{
+  font-size: 15px;
+  color: darkgray;
+}
+
+.likes {
+  position: absolute;
+  bottom: 1px;
+  right: 15px;
+  font-size: 15px;
+  color: lightgrey;
+  font-weight: lighter;
+}
+
+.grid-block__horizontal {
+  height: 150px;
+  width: 100%
+}
+
+.grid-block__big {
+  height: 600px;
+}
+.grid-block__upper__middle {
+  height: 450px;
+}
+.grid-block__small {
+  height: 150px;
+}
+.grid-block__middle {
+  height: 300px;
+}
+
+.wrapper-spinner {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 1200px) {
+  .category {
+    width: 600px;
+  }
+}
+
+@media (max-width: 991px) {
+  .category {
+    width: 500px;
+    margin: .5rem 1rem
+  }
+}
+
+@media (max-width: 991px) {
+  .grid-wrapper{
+    flex-direction: column;
+  }
+
+  .grid-wrapper-horizontal {
+    width: 100%;
+  }
+
+  .grid-block {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+
+  .topPost-title{
+    font-size: 20px;
+    line-height: 22px;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .topPost-title{
+    font-size: 15px;
+    line-height: 19px;
+  }
+  .topPost-title small{
+    font-size: 13px;
+  }
+}

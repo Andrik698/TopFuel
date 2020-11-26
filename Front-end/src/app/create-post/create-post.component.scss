@@ -1,0 +1,31 @@
+.wrapper {
+  height: 94vh;
+  padding-bottom: 90px;
+  margin-left: 200px;
+  padding-top: 56px;
+}
+
+.head{
+  display: inline-block;
+    position: relative;
+    background-color: black;
+    width: 100%;
+}
+
+.alert {
+  top: 50px;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .wrapper {
+    margin-left: 0px;
+  }
+}
+
+
+
+
+

@@ -1,0 +1,9 @@
+<div class="popup">
+  <div class="modal-popup">
+    <h3>{{ title }}</h3>
+    <div class="row mt-5">
+      <button class="btn btn-danger" (click)="delete.emit()">Да</button>
+      <button class="btn btn-primary" (click)="close.emit()">Нет</button>
+    </div>
+  </div>
+</div>

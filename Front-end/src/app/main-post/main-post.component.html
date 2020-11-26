@@ -1,0 +1,145 @@
+
+<div class="window">
+  <div *ngIf="loaded; else loading">
+    <div class="head mt-5">
+      <img src="{{ img }}" class="img-post">
+      <div class="col-md-6 px-0 head-title">
+        <h1 class="display-4 font-italic">{{ post.title }}</h1>
+        <p class="lead my-3">{{ post.subTitle }}</p></div>
+    </div>
+    <div class="container mt-3 pt-3">
+      <div class="left-menu">
+        <div class="sticky">
+          <div *ngFor="let cat of categories"><p class="h6 cursor" [routerLink]="['/categories']" [queryParams]="cat.category">{{ cat.category }}</p></div>
+        </div>
+      </div>
+      <h3 class="text-muted"><span [routerLink]="['/user', author.name]" class="link">{{ author.name }}</span> > <span [routerLink]="['/car', post.carId]" class="link"> {{ post.car }} </span> > <span> {{ post.title }} </span></h3>
+      <div class="post">
+        <div class="author mt-3">
+          <div class="avatar">
+            avatar
+          </div>
+          <div class="about-post">
+            <p class="font-weight-bold cursor" [routerLink]="['/user', author.name]">Автор: {{ author.name }}</p>
+            <p class="font-weight-bold">Дата публикации: {{ post.date | date: "short"}}</p>
+            <p class="font-weight-bold" *ngIf="post.updateDate"><small>Дата последнего обновления: {{ post.updateDate | date: "short"}}</small>
+            </p>
+          </div>
+        </div>
+        <quill-view [content]="post.postbody"></quill-view>
+        <hr>
+        <button class="btn btn-primary btn-like" (click)="likePost()" [disabled]="!sendService.isAuthenticate()">likes {{ post.likes }}</button>
+
+      </div>
+      <h3 class="title-comments mt-3">Комментарии ({{ commentsCount }})</h3>
+      <div class="comments mb-2">
+
+        <div class="comment-main">
+          <form (submit)="addComent()">
+            <div class="form-group">
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" resize="none"
+                    [(ngModel)]="commentText"
+                    name="commentText">{{ commentText }}</textarea>
+            </div>
+            <button class="btn btn-primary" type="submit" *ngIf="sendService.isAuthenticate()" [disabled]="mutedUser">Добавить комментарий</button>
+          </form>
+
+
+          <ul class="media-list mt-3 pb-2 " *ngIf="commentsCount !== 0; else empty">
+            <!-- Комментарий (уровень 1) -->
+            <li class="media" *ngFor="let comment of comments">
+              <div class="media-left mr-3">
+                <a href="#">
+                  <svg class="bd-placeholder-img rounded-circle" width="40" height="40" xmlns="http://www.w3.org/2000/svg"
+                       preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
+                       aria-label="Placeholder: 140x140">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#777"></rect>
+                    <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                  </svg>
+                </a>
+              </div>
+              <div class=" ">
+                <div class="media-heading">
+                  <div class="author"><strong>{{ comment.author }}</strong></div>
+                  <div class="">
+                    <span class="date mt">{{ comment.date | date:"short" }}</span>
+                  </div>
+                </div>
+                <div class="mt-2"><p class="card-text">{{ comment.text }}</p></div>
+                <footer class="">
+                  <small class="text-muted mr-2"></small>
+                  <small class="text-muted mr-3"></small>
+                  <span class="comment-reply">
+                  <button class="btn btn-primary" (click)="showForm(comment._id)" *ngIf="sendService.isAuthenticate()" [disabled]="mutedUser">Ответить</button>
+                </span>
+                </footer>
+                <form (submit)="addAnswer(comment._id)" id="{{comment._id}}" hidden="true">
+                  <div class="form-group">
+                <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" resize="none"
+                          [(ngModel)]="answerText" name="answerText">{{ answerText }}</textarea>
+                  </div>
+                  <button class="btn btn-primary" type="submit">Добавить комментарий</button>
+                </form>
+                <!-- Вложенный медиа-компонент (уровень 2) -->
+
+                <div class="media mt-2" *ngFor="let answer of comment.answer">
+                  <div class="media-left mr-3">
+                    <a href="#">
+                      <svg class="bd-placeholder-img rounded-circle" width="40" height="40"
+                           xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
+                           role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#777"></rect>
+                        <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                      </svg>
+                    </a>
+                  </div>
+                  <div class=" ">
+                    <div class="media-heading">
+                      <div class="author"><strong>{{ answer.author }}</strong></div>
+                      <div class="">
+                        <span class="date mt">{{ answer.date | date:"short" }}</span>
+                      </div>
+                    </div>
+                    <div class="mt-2"><p class="card-text">{{ answer.text }}</p></div>
+                    <footer class="">
+                      <small class="text-muted mr-2"></small>
+                    </footer>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="right-block" *ngIf="commentsCount > 7">
+          <div class="add">
+
+          </div>
+          <div class="add">
+
+          </div>
+          <div class="add">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>
+
+<ng-template #loading>
+  <div class="wrapper">
+    <h3 class="mr-2">Загрузка...</h3>
+    <div class="spinner-border text-secondary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #empty>
+  <div class="wrapper-spinner">
+    <h5 class="ml-2">Тут пока ничего нет</h5>
+  </div>
+</ng-template>

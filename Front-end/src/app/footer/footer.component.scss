@@ -1,0 +1,25 @@
+
+.footer {
+  background-color: lightgrey;
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.logo {
+  height: 80px;
+  flex-shrink: 0;
+  object-fit: cover;
+  outline: none;
+  cursor: pointer;
+}
+
+.center{
+  text-align: center;
+}
+
+.link {
+  outline: none;
+  cursor: pointer;
+}

@@ -1,0 +1,131 @@
+.window {
+  height: 100vh;
+  overflow: auto;
+}
+
+.head{
+  display:inline-block;
+  position:relative;
+  background-color: black;
+  width: 100%;
+}
+
+.head img{
+  opacity: 0.65;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+}
+
+.head-title{
+  position: absolute;
+  top: 77px;
+  left: 30px;
+  width: 100%;
+  color: whitesmoke;
+  text-shadow: 0 0 40px black;
+}
+
+.img-post{
+  object-fit: cover;
+  width: 100%;
+  height: 450px;
+}
+
+.img-car {
+  position: inherit;
+  width: 100%;
+  height: 400px !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+
+
+
+
+.container {
+  position: relative;
+}
+
+.posts {
+  min-height: 300px
+}
+
+.left-menu {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  visibility: hidden;
+  margin-top: 1rem;
+}
+
+.sticky {
+  position: sticky;
+  top: 4rem;
+  min-height: 2em;
+  visibility: visible;
+  width: 200px;
+}
+
+.comment-main {
+  width: 70%;
+  border-top: 1px solid rgba(0, 0, 0, .05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+}
+
+.comments {
+  display: flex;
+}
+
+.right-block {
+  position: sticky;
+  margin-left: 8px;
+  top: 4em;
+  width: 300px;
+  height: 300px;
+}
+
+.add {
+  width: 100%;
+  height: 300px;
+  border: 1px solid black;
+  margin-bottom: 5px;
+  background-color: lightgrey;
+}
+
+.card-footer {
+  padding: 5px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.post {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, .05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+}
+
+.categ-btn{
+  display: flex;
+}
+
+.btn {
+  margin: 1rem 0;
+}
+
+.wrapper-spinner {
+  height: 223px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

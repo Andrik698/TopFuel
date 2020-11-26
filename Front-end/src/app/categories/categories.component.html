@@ -1,0 +1,66 @@
+
+<div class="window">
+  <div class="head mt-5">
+    <img src="https://a.d-cd.net/6sAAAgDTnuA-1920.jpg" class="img-post">
+    <div class="col-md-6 px-0 head-title">
+      <h1 class="display-4 font-italic">Категории</h1>
+    </div>
+  </div>
+
+  <div class="container mt-3 pt-3">
+    <div class="left-menu">
+      <div class="sticky">
+
+      </div>
+    </div>
+    <div class="post" *ngIf="categories">
+      <div *ngFor="let cat of categories" class="categ-btn">
+
+        <button type="button" class="btn btn-secondary" [routerLink]="['/categories']"
+                [queryParams]="cat.category" (click)="load(cat.category)">{{ cat.category }} </button>
+      </div>
+    </div>
+
+    <hr>
+
+  </div>
+
+  <div class="container posts">
+    <div class="card-columns" *ngIf="loaded; else loading">
+      <div *ngIf="posts$.length !== 0; else empty">
+        <div class="card" *ngFor="let post of posts$">
+          <img src="{{ post.img | imgSlice}}" class="card-img-top" alt="{{ post.title }}">
+          <div class="card-body">
+            <small class="text-muted">{{ post.date | date:'short'}}</small>
+            <h5 class="card-title mb-1">{{ post.title}}</h5>
+            <h6 class="card-title">{{ post.category }}</h6>
+            <p class="card-text">{{ post.subTitle }}</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">likes: {{ post.likes }} comm: {{ post.commentsCount }}</small>
+            <button class="btn btn-primary" [routerLink]="['/main-post', post._id]">Подробнее</button>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>
+
+<ng-template #loading>
+  <div class="wrapper-spinner posts">
+    <h3 class="mr-2">Загрузка...</h3>
+    <div class="spinner-border text-secondary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #empty>
+  <div class="wrapper-spinner">
+    <h3 class="mr-2">Не найдено</h3>
+  </div>
+</ng-template>

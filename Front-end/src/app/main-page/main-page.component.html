@@ -1,0 +1,143 @@
+<div class="wrapper">
+  <div class="header-back">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column ">
+      <header class="masthead mb-auto">
+      </header>
+
+      <main role="main" class="inner cover">
+        <h1 class="name">Top <span>Fuel</span></h1>
+        <p class="lead">Мы очень любим машины. И ещё мы очень любим людей.Пришло время <span>Top Fuel</span> — сообщества машин и людей,
+          в котором главные действующие лица — машины.</p>
+        <p class="lead">
+
+        </p>
+      </main>
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>Автомобильное сообщество планетарного масштаба</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
+<div class="container" style="">
+  <h1 class="mt-5">Марки и модели</h1>
+
+  <div class="row row-models">
+    <div class="model" *ngFor="let logo of logos">
+      <img src="../../assets/images/logo/{{logo}}.jpg" [routerLink]="['/models']" [queryParams]="{brand: logo}" alt="" class="logo-img">
+    </div>
+  </div>
+
+  <h1 class="mt-5">Категории</h1>
+  <div class="row row-categories mt-3">
+    <div class="category" *ngFor="let category of categories; let idx = index">
+      <img src="../../assets/images/categories-img/{{idx+1}}.jpg" class="categories-img" [routerLink]="['/categories']" [queryParams]="category">
+
+      <p class="category-title">{{category}}</p>
+    </div>
+  </div>
+
+  <h1 class="mt-2">Рекомендуем к просмотру</h1>
+
+  <div class="grid-wrapper mt-3 mb-3" *ngIf="loaded; else loading">
+
+    <div class="grid-wrapper-horizontal">
+      <div class="grid-block grid-block__horizontal">
+        <div class="grid-content" [routerLink]="['/main-post', posts[0]._id]">
+          <img src="{{ posts[0].img | imgSlice}}" class="grid-img">
+          <p class="topPost-title">
+            <small>{{ posts[0].category }}</small><br>
+            {{ posts[0].title }}
+          </p>
+          <p class="likes">likes: {{ posts[0].likes }} comm: {{ posts[0].commentsCount }}</p>
+        </div>
+      </div>
+    <div class="grid-in-horizontal">
+      <div class="grid-horizontal grid-block__middle">
+        <div class="grid-content" [routerLink]="['/main-post', posts[1]._id]">
+          <img src="{{ posts[1].img | imgSlice}}" class="grid-img">
+          <p class="topPost-title">
+            <small>{{ posts[1].category }}</small><br>
+            {{ posts[1].title }}
+          </p>
+          <p class="likes">likes: {{ posts[1].likes }} comm: {{ posts[1].commentsCount }}</p>
+        </div>
+      </div>
+      <div class="grid-horizontal grid-block__small">
+        <div class="grid-content" [routerLink]="['/main-post', posts[2]._id]">
+          <img src="{{ posts[2].img | imgSlice}}" class="grid-img">
+          <p class="topPost-title">
+            <small>{{ posts[2].category }}</small><br>
+            {{ posts[2].title }}
+          </p>
+          <p class="likes">likes: {{ posts[2].likes }} comm: {{ posts[2].commentsCount }}</p>
+        </div>
+      </div>
+      <div class="grid-horizontal grid-block__upper__middle">
+        <div class="grid-content" [routerLink]="['/main-post', posts[3]._id]">
+          <img src="{{ posts[3].img | imgSlice}}" class="grid-img">
+          <p class="topPost-title">
+            <small>{{ posts[3].category }}</small><br>
+            {{ posts[3].title }}
+          </p>
+          <p class="likes">likes: {{ posts[3].likes }} comm: {{ posts[3].commentsCount }}</p>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="grid">
+      <div class="grid-block grid-block__middle">
+        <div class="grid-content" [routerLink]="['/main-post', posts[4]._id]">
+          <img src="{{ posts[4].img | imgSlice}}" class="grid-img">
+          <p class="topPost-title">
+            <small>{{ posts[4].category }}</small><br>
+            {{ posts[4].title }}
+          </p>
+          <p class="likes">likes: {{ posts[4].likes }} comm: {{ posts[4].commentsCount }}</p>
+        </div>
+      </div>
+      <div class="grid-block grid-block__small">
+        <div class="grid-content" [routerLink]="['/main-post', posts[5]._id]">
+          <img src="{{ posts[5].img | imgSlice}}" class="grid-img">
+          <p class="topPost-title">
+            <small>{{ posts[5].category }}</small><br>
+            {{ posts[5].title }}
+          </p>
+          <p class="likes">likes: {{ posts[5].likes }} comm: {{ posts[5].commentsCount }}</p>
+        </div>
+      </div>
+      <div class="grid-block grid-block__small">
+        <div class="grid-content" [routerLink]="['/main-post', posts[6]._id]">
+          <img src="{{ posts[6].img | imgSlice}}" class="grid-img">
+          <p class="topPost-title">
+            <small>{{ posts[6].category }}</small><br>
+            {{ posts[6].title }}
+          </p>
+          <p class="likes">likes: {{ posts[6].likes }} comm: {{ posts[6].commentsCount }}</p>
+        </div>
+      </div>
+      <div class="grid-block grid-block__big">
+        <div class="grid-content" [routerLink]="['/main-post', posts[7]._id]">
+          <img src="{{ posts[7].img | imgSlice}}" class="grid-img">
+          <p class="topPost-title">
+            <small>{{ posts[7].category }}</small><br>
+            {{ posts[7].title }}
+          </p>
+          <p class="likes">likes: {{ posts[7].likes }} comm: {{ posts[7].commentsCount }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #loading>
+    <div class="wrapper-spinner">
+      <h3 class="mr-2">Загрузка...</h3>
+      <div class="spinner-border text-secondary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </ng-template>
+</div>
+<app-footer></app-footer>

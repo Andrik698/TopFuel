@@ -1,0 +1,108 @@
+<app-dashboard></app-dashboard>
+<div class="wrapper" *ngIf="post">
+  <app-popup *ngIf="modal" title="Удалить пост?" (delete)="deletePost()" (close)="modal = false"></app-popup>
+  <div class="alert alert-success" role="alert" id="success" hidden="true">
+    A simple success alert—check it out!
+  </div>
+  <div class="alert alert-danger" role="alert" id=fool hidden="true">
+    A simple danger alert—check it out!
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-light rounded">
+    <div class="cont">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample09">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="!isPublished" (click)="publicPost(post._id, true)">Опубликовать</a>
+          <a class="nav-link" *ngIf="isPublished" (click)="publicPost(post._id, false)">Скрыть</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink] = "['/update', post._id]">Редактировать</a>
+        </li>
+        <li class="nav-item">
+          <a  class="nav-link logout" (click)="modal = true">Удалить</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </nav>
+  <div class="head">
+      <img src="{{ img }}" class="img-post">
+    <div class="col-md-6 px-0 head-title">
+      <h1 class="display-4 font-italic">{{ post.title }}</h1>
+      <p class="lead my-3">{{ post.subTitle }}</p>
+      <footer class="row"><p class="lead mb-0"><a class="text-white font-weight-bold">Автор: {{ author.name }}</a>
+        <br>Дата: {{ post.date | date: "short"}}
+        <br><span *ngIf="post.updateDate">Дата последнего обновления: {{ post.updateDate | date: "short"}}</span></p></footer>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <h2 class="mt-5">Ваш пост</h2>
+    <p>Нравится: {{ post.likes }}</p>
+    <quill-view [content]="post.postbody"></quill-view>
+
+    <h3 class="title-comments">Комментарии ({{ commentsCount }})</h3>
+
+    <div class="comments">
+
+
+      <ul class="media-list">
+        <!-- Комментарий (уровень 1) -->
+        <li class="media" *ngFor="let comment of comments">
+          <div class="media-left mr-3">
+            <a href="#">
+              <svg class="bd-placeholder-img rounded-circle" width="40" height="40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+              </a>
+          </div>
+          <div class=" ">
+            <div class="media-heading">
+              <div class="author"><strong>{{ comment.author }}</strong></div>
+                <div class="">
+                  <span class="date mt">{{ comment.date | date:"short" }}</span>
+                </div>
+              </div>
+              <div class="mt-2"><p class="card-text">{{ comment.text }}</p></div>
+              <footer class="">
+                <span class="comment-reply">
+                </span>
+              </footer>
+              <form (submit)="addAnswer(comment._id)" id="{{comment._id}}" hidden="true">
+                <div class="form-group">
+                  <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" resize="none" [(ngModel)]="answerText" name="answerText">{{ answerText }}</textarea>
+                </div>
+                <button class="btn btn-primary" type="submit" >Добавить комментарий</button>
+                </form>
+              <!-- Вложенный медиа-компонент (уровень 2) -->
+
+              <div class="media" *ngFor="let answer of comment.answer">
+                <div class="media-left mr-3">
+                  <a href="#">
+                    <svg class="bd-placeholder-img rounded-circle" width="40" height="40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+                    </a>
+                </div>
+                <div class=" ">
+                  <div class="media-heading">
+                    <div class="author"><strong>{{ answer.author }}</strong></div>
+                      <div class="">
+                        <span class="date mt">{{ answer.date | date:"short" }}</span>
+                      </div>
+                    </div>
+                    <div class="mt-2"><p class="card-text">{{ answer.text }}</p></div>
+                    <footer class="">
+                      <small class="text-muted mr-2"></small>
+                    </footer>
+                </div>
+              </div>
+            </div>
+        </li>
+      </ul>
+    </div>
+</div>
+
+</div>
+

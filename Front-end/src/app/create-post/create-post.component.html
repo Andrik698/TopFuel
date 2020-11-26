@@ -1,0 +1,41 @@
+<app-dashboard></app-dashboard>
+
+<div class="wrapper">
+  <div class="container">
+    <form class="form-signin" (submit)="createPost()">
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <label>Категория</label>
+          <select class="custom-select d-block w-100" [(ngModel)]="selectedCategory" name="selectedCategory" id="selectedCategory"
+            required="" >
+            <option value="">Выберите...</option>
+            <option *ngFor="let cat of categories">{{cat.category}}</option>
+            <!-- <option *ngFor="let cars of allCars">{{cars.brand}}</option> -->
+          </select>
+        </div>
+        <div class="col-md-6 mb-4">
+          <label>Марка</label>
+          <select class="custom-select d-block w-100" [(ngModel)]="selectedCar" name="selectedCar" id="selectedCar"
+            required="" (change)="compareString()">
+            <option value="">Выберите...</option>
+            <option *ngFor="let car of userCars$">{{car.brand}} {{car.model}} {{car.generation}}</option>
+            <!-- <option *ngFor="let cars of allCars">{{cars.brand}}</option> -->
+          </select>
+        </div>
+      </div>
+        <input [(ngModel)]="title" name="title" type="text" id="title" class="form-control mb-3" placeholder="Заголовок" required="">
+      <input [(ngModel)]="selectedSubTitle" name="selectedSubTitle" type="text" id="selectedSubTitle" class="form-control mb-3" placeholder="Подзаголовок" required="">
+      <div class="alert-warning">
+        <strong>Внимание!</strong> Сначала добавьте главное изображение поста.
+      </div>
+      <quill-editor [(ngModel)]="postBody" name="postBody" id="postBody" placeholder="Пост"></quill-editor>
+      <button class="btn btn-lg btn-primary btn-block mt-5" type="submit">Добавить</button>
+    </form>
+  </div>
+  <div class="alert alert-success" role="alert" id="success" hidden="true">
+    A simple success alert—check it out!
+  </div>
+  <div class="alert alert-danger" role="alert" id=fool hidden="true">
+    A simple danger alert—check it out!
+  </div>
+</div>

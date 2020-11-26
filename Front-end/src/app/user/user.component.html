@@ -1,0 +1,96 @@
+
+<div class="window">
+  <div class="height" *ngIf="!loaded">
+  </div>
+  <div class="head mt-5" *ngIf="loaded">
+    <img src="https://a.d-cd.net/6sAAAgDTnuA-1920.jpg" class="img-post">
+    <div class="col-md-6 px-0 head-title">
+      <h1 class="display-4 font-italic">{{user$.name}}</h1>
+      <p class="lead my-3 txt">{{ user$.aboutUser }}</p>
+
+    </div>
+    <div class="header-foot">
+      <h3 class="display-6"></h3>
+      <div class="count-wrap">
+        <!--<div class="count count-tomato"><p>4<br><small>subs</small></p></div>-->
+        <!--<div class="count count-fuchsia"><p>{{ user$.postsCount }}<br><small>posts</small></p></div>-->
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container mb-2" *ngIf="loaded; else loading">
+    <h2 class="mt-2">Обо мне</h2>
+    <div class="about-car">
+      <p><span>-</span> {{ user$.name }} {{ user$.lastName }} | {{ user$.userName }}</p>
+      <p><span>-</span> Город {{ user$.city }}</p>
+      <p><span>-</span> Основной способ передвижения: {{ user$.userCar }}</p>
+    </div>
+    <h2 class="mt-2">Машины {{ user$.userName }}</h2>
+    <div class="container">
+      <div class="card-columns" *ngIf="loaded; else loading">
+        <div *ngIf="cars$.length !== 0; else empty">
+          <div class="card" *ngFor="let car of cars$">
+            <img src="{{ car.img }}" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title mb-1">"{{car.carName}}" |  {{ car.brand }} {{ car.model }} {{ car.generation }}</h5>
+              <h6 class="card-title">Владелец: <span class="text-muted">{{ car.user.name }}</span></h6>
+              <p class="card-text">{{ car.text }}</p>
+            </div>
+            <div class="card-footer">
+              <!--<small class="text-muted">Посты: {{ car.postCount }} Подписчиков: {{ car.subscribersCar }}</small>-->
+              <button class="btn btn-primary with-spinner"
+                      [routerLink]="['/user', user$.userName]"
+                      [queryParams]="{carId: car._id}"
+                      (click)="loadPost(car._id)"
+                      [disabled]="!activeBtn">
+                      Посты
+                      <div class="spinner-border btn-spinner" role="status" *ngIf="!activeBtn"></div>
+              </button>
+              <button class="btn btn-primary" [routerLink]="['/car', car._id]">Подробнее</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" *ngIf="posts$">
+    <h2 class="mt-2">Посты </h2>
+    <div class="card-columns" *ngIf="postLoaded; else loading">
+      <div *ngIf="posts$.length !== 0; else empty">
+        <div class="card" *ngFor="let post of posts$">
+          <img src="{{ post.img | imgSlice}}" class="card-img-top" alt="{{ post.title }}">
+          <div class="card-body">
+            <small class="text-muted">{{ post.date | date:'short'}}</small>
+            <h5 class="card-title mb-1">{{ post.title}}</h5>
+            <h6 class="card-title">{{ post.category }}</h6>
+            <p class="card-text">{{ post.subTitle }}</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">likes: {{ post.likes }} comm: {{ post.commentsCount }}</small>
+            <button class="btn btn-primary" [routerLink]="['/main-post', post._id]">Подробнее</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>
+
+<ng-template #loading>
+  <div class="wrapper-spinner">
+    <h3 class="mr-2">Загрузка...</h3>
+    <div class="spinner-border text-secondary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #empty>
+  <div class="wrapper-spinner">
+    <h3 class="mr-2">Не найдено</h3>
+  </div>
+</ng-template>
+
+
