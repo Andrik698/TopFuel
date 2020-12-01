@@ -7,6 +7,8 @@ import {SendService} from "../send.service";
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
+  //TODO: use types and access modifier
+  private _example: number;
   categories
 
   constructor(
@@ -18,5 +20,4 @@ export class AboutComponent implements OnInit {
       this.categories = data
     })
   }
-
 }

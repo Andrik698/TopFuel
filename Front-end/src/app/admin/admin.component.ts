@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Car, Post, SendService, User} from "../send.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import {take} from "rxjs/operators";
 
 @Component({
   selector: 'app-admin',
@@ -37,10 +38,14 @@ export class AdminComponent implements OnInit {
   }
 
   getOneUser(event?: any) {
-    if (event.target.value.trim()) {
-      this.inputValue = event.target.value.trim() // получает введенный символ
+    const inputChar = event.target.value.trim();
+    if (inputChar) {
+      this.inputValue = inputChar; // получает введенный символ
       console.log(this.inputValue)
-      this.sendService.findOneUser({name: this.inputValue}).subscribe(data => {
+      //TODO: why 'name' is object, not just string?
+      this.sendService.findOneUser({name: this.inputValue}).pipe(
+          take(1)
+      ).subscribe(data => {
         this.users$ = data
         console.log(data)
       })
@@ -99,6 +104,7 @@ export class AdminComponent implements OnInit {
     this.sendService.hidePost({id, isHide}).subscribe(data => {
       console.log(data)
     })
+    //TODO: may be just use foreach or reduce?
     this.posts$.map(post => {
       if (post._id === id) post.hide = isHide
     })
@@ -151,6 +157,7 @@ export class AdminComponent implements OnInit {
     console.log(car)
 
     this.sendService.addCar(car).subscribe(data => {
+      //TODO: wht you log all subs?
       console.log(data)
     })
   }
